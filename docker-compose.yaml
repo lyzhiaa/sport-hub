@@ -1,0 +1,18 @@
+services:
+  sport-hub-db:
+    image: postgres:latest
+    container_name: sport_hub
+    ports:
+      - "5455:5432" # Map the application port
+    environment:
+      - POSTGRES_DB=sport_hub
+      - POSTGRES_PASSWORD=sporthub@1234
+      - POSTGRES_USER=sportHub
+    volumes:
+      - sportHub-pg-vol:/var/lib/postgresql/data
+    networks:
+      - sport-hub-net
+volumes:
+  sportHub-pg-vol:
+networks:
+  sport-hub-net:
