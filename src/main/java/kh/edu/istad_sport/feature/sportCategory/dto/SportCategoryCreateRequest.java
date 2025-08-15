@@ -4,5 +4,4 @@ public record SportCategoryCreateRequest (
         String name,
         String description
 ) {
-
 }

@@ -11,7 +11,7 @@ public interface SportRepository extends JpaRepository<Sport, String> {
 //    boolean existsByUuid(String uuid);
     boolean existsByName(String name);
     Optional<Sport> findByUuid(String uuid);
-    Optional<Sport> findByName(String name);
+//    Optional<Sport> findByName(String name);
     List<Sport> findBySportCategoryUuid(String sportCategoryUuid);
 
 }

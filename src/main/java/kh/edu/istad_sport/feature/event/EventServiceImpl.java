@@ -1,6 +1,9 @@
 package kh.edu.istad_sport.feature.event;
 
+import kh.edu.istad_sport.domain.Category;
 import kh.edu.istad_sport.domain.Event;
+import kh.edu.istad_sport.domain.SportCategory;
+import kh.edu.istad_sport.feature.category.CategoryRepository;
 import kh.edu.istad_sport.feature.event.dto.EventCreateRequest;
 import kh.edu.istad_sport.feature.event.dto.EventResponse;
 import kh.edu.istad_sport.feature.event.dto.EventUpdateRequest;
@@ -17,6 +20,7 @@ public class EventServiceImpl implements EventService {
 
     private final EventRepository eventRepository;
     private final EventMapper eventMapper;
+    private final CategoryRepository categoryRepository;
 
     // create event
     @Override
@@ -24,10 +28,18 @@ public class EventServiceImpl implements EventService {
         if (eventRepository.existsByName(eventCreateRequest.name())) {
             throw new RuntimeException("Event with name " + eventCreateRequest.name() + " already exists");
         }
+        // Check if category exists, otherwise create a new one
+        Category category = categoryRepository.findByName(eventCreateRequest.categoryName())
+                .orElseGet(() -> {
+                    Category newCategory = new Category();
+                    newCategory.setName(eventCreateRequest.categoryName());
+                    return categoryRepository.save(newCategory);
+                });
         Event event = eventMapper.fromEventCreateRequest(eventCreateRequest);
         event.setUuid(java.util.UUID.randomUUID().toString());
         event.setCreatedAt(String.valueOf(LocalDateTime.now()));
         event.setUpdatedAt(String.valueOf(LocalDateTime.now()));
+        event.setCategory(category);
         eventRepository.save(event);
         return eventMapper.toEventResponse(event);
     }

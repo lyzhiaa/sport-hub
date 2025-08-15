@@ -13,7 +13,7 @@ public class Comment {
     @Column(nullable = false)
     private String uuid;
     @Column(nullable = false)
-    private String sportUuid;
+    private String eventUuid;
 
     @Column(nullable = false)
     private String comment;

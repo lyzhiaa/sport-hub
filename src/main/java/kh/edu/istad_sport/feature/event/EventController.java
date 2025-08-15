@@ -40,4 +40,9 @@ public class EventController {
     EventResponse updateEvent(@Valid @PathVariable("uuid") String uuid, @RequestBody EventUpdateRequest eventUpdateRequest) {
         return eventService.updateEvent(uuid, eventUpdateRequest);
     }
+    // delete event
+    @DeleteMapping("/{uuid}")
+    void deleteSportByUuid(@Valid @PathVariable("uuid") String uuid) {
+        eventService.deleteEvent(uuid);
+    }
 }

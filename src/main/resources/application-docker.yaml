@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://136.228.158.126:3012/sport_hub
+  config:
+    activate:
+      on-profile: docker
+
+file-upload:
+  server-path: /upload/
+  base-uri: https://sport-hub.eunglyzhia.social/images/

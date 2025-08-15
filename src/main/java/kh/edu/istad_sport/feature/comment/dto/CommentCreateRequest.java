@@ -4,7 +4,7 @@ import jakarta.persistence.Column;
 
 public record CommentCreateRequest(
         @Column(nullable = false)
-        String sportUuid,
+        String eventUuid,
 
         @Column(nullable = false)
         String comment

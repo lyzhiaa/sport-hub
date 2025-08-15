@@ -1,9 +1,22 @@
 services:
+  sport-hub-api:
+    image: "sport-hub-api"
+    build:
+      context: .
+    container_name: sport-hub-api
+    ports:
+      - "3011:8080"
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - sport-hub-net
+    volumes:
+      - "./Upload:/upload"
   sport-hub-db:
     image: postgres:latest
     container_name: sport_hub
     ports:
-      - "5455:5432" # Map the application port
+      - "3012:5432" # Map the application port
     environment:
       - POSTGRES_DB=sport_hub
       - POSTGRES_PASSWORD=sporthub@1234

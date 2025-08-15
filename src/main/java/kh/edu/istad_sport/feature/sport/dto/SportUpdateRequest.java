@@ -1,6 +1,14 @@
 package kh.edu.istad_sport.feature.sport.dto;
 
-public record SportUpdateRequest (
+import jakarta.validation.constraints.NotBlank;
 
+import java.util.List;
+
+public record SportUpdateRequest (
+        String name,
+        String description,
+        List<String> imageUrls,
+        @NotBlank(message = "Category name is required")
+        String categoryName
 ) {
 }

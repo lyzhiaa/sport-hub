@@ -8,6 +8,7 @@ public record EventUpdateRequest(
         List<String> imageUrls,
         String locationName,
         Double latitude,
-        Double longitude
+        Double longitude,
+        String categoryName
 ) {
 }

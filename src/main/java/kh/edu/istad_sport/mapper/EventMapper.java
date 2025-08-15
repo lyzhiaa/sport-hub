@@ -1,6 +1,8 @@
 package kh.edu.istad_sport.mapper;
 
+import kh.edu.istad_sport.domain.Category;
 import kh.edu.istad_sport.domain.Event;
+import kh.edu.istad_sport.feature.category.dto.CategoryNameResponse;
 import kh.edu.istad_sport.feature.event.dto.EventCreateRequest;
 import kh.edu.istad_sport.feature.event.dto.EventResponse;
 import kh.edu.istad_sport.feature.event.dto.EventUpdateRequest;
@@ -19,4 +21,11 @@ public interface EventMapper {
     EventResponse toEventResponse(Event event);
     // update event by uuid
     void fromEventUpdateRequest(EventUpdateRequest eventUpdateRequest, @MappingTarget Event event);
+
+    default CategoryNameResponse mapCategoryToCategoryNameResponse(Category category) {
+        return (category == null)
+                ? new CategoryNameResponse("Uncategorized")
+                : new CategoryNameResponse(category.getName());
+    }
+
 }

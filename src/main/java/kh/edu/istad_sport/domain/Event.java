@@ -33,6 +33,9 @@ public class Event {
     @Column(nullable = false, unique = true)
     private Double longitude;
 
+    @ElementCollection
+    private List<String> imageUrls;
+
     @Column(updatable = false)
     private String createdAt;
 
@@ -43,6 +46,11 @@ public class Event {
 
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments;
+
+    // Category
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "category_id")
+    private Category category;
 
 
 }
